@@ -123,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				494D9F6C2BEB15A200F39243 /* GeocodingResult.swift */,
-				494D9F6F2BEB1CD300F39243 /* WeatherResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -158,7 +157,6 @@
 		494D9F812BEC9F3500F39243 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				494D9F652BEB080E00F39243 /* WeatherService.swift */,
 				494D9F692BEB142500F39243 /* GeocodingService.swift */,
 			);
 			path = Services;
@@ -167,8 +165,10 @@
 		494D9F822BEC9F7C00F39243 /* WeatherDisplay */ = {
 			isa = PBXGroup;
 			children = (
+				494D9F852BEE873F00F39243 /* Model */,
 				494D9F842BEC9FAD00F39243 /* View */,
 				494D9F832BEC9F9000F39243 /* ViewModel */,
+				494D9F862BEE875700F39243 /* Services */,
 			);
 			path = WeatherDisplay;
 			sourceTree = "<group>";
@@ -187,6 +187,22 @@
 				494D9F7A2BEB2B4600F39243 /* WeatherDisplayView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		494D9F852BEE873F00F39243 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				494D9F6F2BEB1CD300F39243 /* WeatherResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		494D9F862BEE875700F39243 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				494D9F652BEB080E00F39243 /* WeatherService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		49D4B0582BEAF77800B094FF = {
