@@ -13,35 +13,42 @@ struct WeatherDisplayView: View {
     @StateObject private var viewModel: WeatherDisplayViewModel
     
     // Custom initializer that accepts a `WeatherResponse` object and initializes the view model.
-    init(weatherResponse: WeatherResponse?) {
+    init(geocodingResult: GeocodingResult?) {
         // Initializes the view model using a wrapped value, allowing it to be used as a state object.
-        _viewModel = StateObject(wrappedValue: WeatherDisplayViewModel(weatherResponse: weatherResponse))
+        _viewModel = StateObject(wrappedValue: WeatherDisplayViewModel(geocodingResult: geocodingResult))
     }
     
     // The main body of the SwiftUI view.
     var body: some View {
-        // Vertically arrange the elements with 16 points of spacing between them.
-        VStack(spacing: 16) {
-            // Display the temperature as a large title.
-            Text(viewModel.temperature).font(.largeTitle)
-            // Display the weather condition description as a title.
-            Text(viewModel.description).font(.title)
-            
-            // Check if the view model has a valid URL for the weather icon.
-            if let iconUrl = viewModel.iconURL {
-                // Use `AsyncImage` to load and display the weather icon asynchronously.
-                AsyncImage(url: iconUrl)
+        ScrollView {
+            // Vertically arrange the elements with 16 points of spacing between them.
+            VStack(spacing: 16) {
+                // Display the temperature as a large title.
+                Text(viewModel.temperature).font(.largeTitle)
+                // Display the weather condition description as a title.
+                Text(viewModel.description).font(.title)
+                
+                // Check if the view model has a valid URL for the weather icon.
+                if let iconUrl = viewModel.iconURL {
+                    // Use `AsyncImage` to load and display the weather icon asynchronously.
+                    AsyncImage(url: iconUrl)
                     // Maintain the image's aspect ratio and fit it within the frame.
-                    .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fit)
                     // Limit the size of the image to 100x100 points.
-                    .frame(width: 100, height: 100)
+                        .frame(width: 100, height: 100)
+                }
+                
+                // Spacer fills the remaining vertical space below, pushing content to the top.
+                Spacer()
             }
-            
-            // Spacer fills the remaining vertical space below, pushing content to the top.
-            Spacer()
+            // Add padding around the entire vertical stack.
+            .padding()
         }
-        // Add padding around the entire vertical stack.
-        .padding()
+        // Refresh mechanism to trigger the view model's `refresh` method.
+        .refreshable {
+            viewModel.refresh()
+        }
+        
         // Set the navigation title to "Weather Details".
         .navigationTitle("Weather Details")
     }

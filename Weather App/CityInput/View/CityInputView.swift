@@ -41,8 +41,8 @@ struct CityInputView: View {
 
                 // `NavigationLink` allows navigation to `WeatherDisplayView`.
                 NavigationLink(
-                    // Navigate to the `WeatherDisplayView` and pass the weather data from the view model.
-                    destination: WeatherDisplayView(weatherResponse: viewModel.weatherResponse),
+                    // Navigate to the `WeatherDisplayView` and pass the geocoding result from the view model.
+                    destination: WeatherDisplayView(geocodingResult: viewModel.geocodingResult),
                     // Control navigation state using a `Binding` to `isShowingDetails`.
                     isActive: Binding(
                         // Getter returns the current value of `isShowingDetails`.
@@ -58,9 +58,9 @@ struct CityInputView: View {
                 ) {
                     // Button to trigger the fetchWeather method in the view model.
                     Button("Fetch Weather") {
-                        // Fetch weather data and navigate to the next screen if data is available.
-                        viewModel.fetchWeather {
-                            if viewModel.weatherResponse != nil {
+                        // Fetch goecoding data and navigate to the next screen if data is available.
+                        viewModel.fetchGeocoding {
+                            if viewModel.geocodingResult != nil {
                                 isShowingDetails = true
                             }
                         }
