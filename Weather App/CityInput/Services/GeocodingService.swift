@@ -17,7 +17,9 @@ final class GeocodingService {
     private init() {}
 
     // The API key required for authenticating requests to the OpenWeatherMap Geocoding API.
-    private let apiKey = "8ad9ea8655058266976a5e32f05e2bdc"
+    private let apiKey: String = {
+        Bundle.main.object(forInfoDictionaryKey: "WEATHER_API_KEY") as? String ?? ""
+    }()
     // The base URL to the OpenWeatherMap geocoding endpoint.
     private let geocodeUrl = "https://api.openweathermap.org/geo/1.0/direct"
 

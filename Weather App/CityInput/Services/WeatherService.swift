@@ -17,7 +17,9 @@ final class WeatherService {
     private init() {}
 
     // The API key needed to authenticate requests to OpenWeatherMap's API.
-    private let apiKey = "8ad9ea8655058266976a5e32f05e2bdc"
+    private let apiKey: String = {
+        Bundle.main.object(forInfoDictionaryKey: "WEATHER_API_KEY") as? String ?? ""
+    }()
     // The base URL for the weather endpoint that returns current weather data.
     private let baseUrl = "https://api.openweathermap.org/data/2.5/weather"
 
