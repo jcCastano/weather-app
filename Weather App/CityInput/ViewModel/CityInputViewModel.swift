@@ -44,11 +44,16 @@ class CityInputViewModel: ObservableObject {
                     self?.errorMessage = error.localizedDescription
                 }
             }, receiveValue: { [weak self] results in
-                // Update the first geocoding result for the target location.
-                self?.geocodingResult = results.first
-                // Clear any error messages since the data was successfully fetched.
-                self?.errorMessage = nil
-                // Call the optional completion handler.
+                if !results.isEmpty {
+                    // Update the first geocoding result for the target location.
+                    self?.geocodingResult = results.first
+                    // Clear any error messages since the data was successfully fetched.
+                    self?.errorMessage = nil
+                    // Call the optional completion handler.
+                } else {
+                    self?.errorMessage = "City not found"
+                }
+                    
                 completion()
             })
         // Store the `AnyCancellable` subscription to keep it alive until explicitly canceled.
