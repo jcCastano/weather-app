@@ -25,17 +25,10 @@ The Weather App is an iOS application that displays detailed weather information
    ```bash
    cd weather-app
    ```
-3. **Install CocoaPods**:
-   - If CocoaPods isn't installed, you can install it using:
-   ```bash
-   sudo gem install cocoapods
-   ```
-   - Run `pod install` to fetch dependencies.
+3. **Open the Workspace**:
+   - Open the `Weather App.xcodeproj` file using Xcode.
 
-4. **Open the Workspace**:
-   - Open the `Weather App.xcworkspace` file using Xcode.
-
-5. **Add Your API Key**:
+4. **Add Your API Key**:
    - Go to the `Info.plist` file in the Xcode project navigator.
    - Add a new key-value pair with the following:
      - **Key**: `WEATHER_API_KEY`
