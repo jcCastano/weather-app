@@ -37,8 +37,9 @@ class WeatherDisplayViewModel: ObservableObject {
     func refresh() {
         // Check if the geocoding result is available to obtain coordinates.
         if let geocoding = geocodingResult {
+            let weatherService = WeatherService()
             // Make a network request to fetch weather data for the given coordinates.
-            WeatherService.shared.fetchWeatherPublisher(for: geocoding.lat, lon: geocoding.lon)
+            weatherService.fetchWeatherPublisher(for: geocoding.lat, lon: geocoding.lon)
             // Ensure that Combine publisher output is processed on the main thread for UI updates.
                 .receive(on: DispatchQueue.main)
             // Handle completion (errors) and received values.

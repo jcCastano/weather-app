@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class NetworkService {
+class NetworkService: NetworkServiceProtocol {
     // Base URL for all network requests
     private let baseUrl = URL(string: "https://api.openweathermap.org/")!
     

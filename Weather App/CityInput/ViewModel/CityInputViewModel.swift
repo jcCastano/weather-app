@@ -31,8 +31,9 @@ class CityInputViewModel: ObservableObject {
         
         // Indicate that the data is being fetched by setting `isLoading` to `true`.
         isLoading = true
+        let geocodingService = GeocodingService()
         // Fetch the geographic coordinates (latitude and longitude) of the given city name.
-        GeocodingService.shared.fetchCoordinatesPublisher(for: cityName)
+        geocodingService.fetchCoordinatesPublisher(for: cityName)
         // Ensure the completion handler and UI updates happen on the main thread.
             .receive(on: DispatchQueue.main)
         // Subscribe to the data stream using `sink`, handling both the completion and value cases.
